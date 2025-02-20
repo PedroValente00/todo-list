@@ -4,8 +4,7 @@
   "description": "Wishlist project with the MERN stack\r A more recent version of my [first wishlist](https://github.com/PedroValente00/wishlist)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server":"nodemon /api index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
