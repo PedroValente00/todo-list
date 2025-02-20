@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 
-app.get("/", (req, res) => res.send(`Hello from Express on port ${PORT} `));
 app.use(express.static("dist"))
+app.get("/", (req, res) => res.send(`Hello from Express on port ${PORT} `));
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => console.log("Server ready on port", PORT));
