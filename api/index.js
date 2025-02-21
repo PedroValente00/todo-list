@@ -2,10 +2,12 @@ const express = require("express");
 const path = require("path")
 const app = express();
 
-app.use(express.static(path.join(__dirname, '/dist')));  
+// app.use(express.static(path.join(__dirname, '/dist')));  
 
 
-app.get("/", (req, res) => res.send(`Hello from Express on port ${PORT} `));
+// app.get("/", (req, res) => res.send(`Hello from Express on port ${PORT} `));
+app.use('/', express.static(path.join(__dirname + '/dist')));
+
 app.get("/b", (req,res) => {res.sendFile("/b.html")})
 app.get("/here", (req,res) => {res.send("You are here")})
 
