@@ -7,7 +7,7 @@ const data = [
     {id:2,product:"TV",price:500}
 ]
 
-app.use(express.static(path.join(__dirname, '../vite/dist')));  
+app.use(express.static(path.join(__dirname, '/dist')));  
 app.get("/api/data", (req,res) => {
     res.send(data)
 })
