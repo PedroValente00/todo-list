@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path")
 const app = express();
 const { v4: uuid } = require('uuid');
-const ToDo = require("./database")
+// const ToDo = require("./database")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
@@ -17,9 +17,9 @@ app.get("/api/toDos", (req, res) => {
     res.send(data)
 })
 app.post("/api/toDos", async (req, res) => {
-    data.push(req.body)
-    const toDo = new ToDo(req.body)
-    await toDo.save();
+    // data.push(req.body)
+    // const toDo = new ToDo(req.body)
+    // await toDo.save();
 
     res.send("to do submission received")
 })
