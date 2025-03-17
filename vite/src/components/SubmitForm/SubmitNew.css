@@ -1,0 +1,33 @@
+/* imported in List.jsx */
+/* Honestly, I just copy-pasted these styles */
+
+#newTodoForm {
+    display: flex;
+    align-items: center;
+    margin-top: 1em;
+}
+
+#newTodo {
+    flex-grow: 1;
+    padding: 0.8em;
+    margin-right: 1em;
+}
+#newTodo:focus {
+    border: 3px solid #5551ff;
+}
+
+.submitBtn {
+    border:none;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 0.8em 3em;
+    color: #fff;
+    background-color: rgb(88, 101, 242);
+}
+.submitBtn:hover {
+    background-color: rgb(71, 82, 196);
+}
+
+.submitBtn:active{
+    background-color: rgb(46, 53, 126);
+}

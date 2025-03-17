@@ -1,0 +1,70 @@
+/* imported in List.jsx */
+.list {
+    width: 50vw;
+    margin: auto;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    padding: 1px;
+    margin: 1px;
+}
+
+.item:nth-child(odd){
+    /* background-color: #98D2C0; */
+}
+.item:nth-child(even){
+    /* background-color: #4F959D; */
+}
+
+.item-info:has(>input[type='checkbox']:checked) {
+    text-decoration: line-through;
+}
+
+.item-info {
+    display: inline-flex;
+    flex-grow: 1;
+}
+
+.item-info:hover {
+    background-color: antiquewhite;
+}
+
+.item-buttons {
+    margin-left: 0.5em;
+    display: flex
+}
+
+.item-info>label {
+    cursor: pointer;
+    flex-grow: 1;
+    margin-left: 0.5em;
+}
+
+.icon {
+    cursor: pointer;
+    margin: 0 0.1em;
+}
+
+.icon:hover{
+    filter:drop-shadow(1px 1px 5px rgb(212, 214, 214));
+}
+
+.edit{
+    display: flex;
+    align-items: center;
+}
+
+.edit-text{
+    padding: 0.6em;
+}
+
+.trash{
+    color:rgb(75, 77, 79)
+}
+
+.pencil{
+    color:rgb(75, 77, 79)
+    /* color:rgb(88, 101, 242) */
+}

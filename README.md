@@ -1,6 +1,5 @@
-# wishlist-2
+# todo-list
 
-Wishlist project with the MERN stack
-A more recent version of my [first wishlist](https://github.com/PedroValente00/wishlist)
+A todo-list project using the MERN stack (MongoDB, Express, React, Node)
 
 Hosted with Vercel and using React technologies (Vite, Material UI, etc)
