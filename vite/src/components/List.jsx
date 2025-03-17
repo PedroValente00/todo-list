@@ -36,7 +36,7 @@ export default function List() {
   },[toDos])
 
   return <div className="list">
-    <fieldset><legend>To Do</legend>
+    <fieldset><legend>Things to do</legend>
       {toDos.length === 0 && <CircularProgress disableShrink />}
       {/* maybe add a timeout for the spinner to go away */}
       {toDos.map(item => <Item key={item.id} item={item} setToDos={setToDos} />)}

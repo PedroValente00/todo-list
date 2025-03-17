@@ -9,7 +9,7 @@ export default function SubmitNew({toDos, setToDos}) {
         setNewToDo(e.target.value)
     }
 
-    function handleSubmit(e) {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if(!newToDo.length) return;
         const capFirst = newToDo.charAt(0).toUpperCase();
@@ -17,7 +17,7 @@ export default function SubmitNew({toDos, setToDos}) {
         const capitalizedNewToDo = `${capFirst}${capRest}`
         const submission = {id:uuid(), toDo:capitalizedNewToDo, done:false }
         //do database later with authentication
-        axios.post('/api/toDos', submission);
+        await axios.post('/api/toDos', submission);
         setToDos(toDos => [...toDos, submission])
         setNewToDo("")
     }
