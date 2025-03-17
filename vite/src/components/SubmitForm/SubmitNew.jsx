@@ -17,9 +17,12 @@ export default function SubmitNew({toDos, setToDos}) {
         const capitalizedNewToDo = `${capFirst}${capRest}`
         const submission = {id:uuid(), toDo:capitalizedNewToDo, done:false }
         //do database later with authentication
-        await axios.post('/api/toDos', submission);
         setToDos(toDos => [...toDos, submission])
         setNewToDo("")
+        try{
+
+            await axios.post('/api/toDos', submission);
+        }catch(e){console.log(e)}
     }
 
     return <form action="/api/toDos" method="post" id="newTodoForm"
