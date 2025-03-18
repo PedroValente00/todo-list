@@ -43,6 +43,7 @@ export default function List() {
     if(toDos.length){
       // const data = JSON.parse(localStorage.getItem("toDos"))
       localStorage.setItem("toDos", JSON.stringify(toDos))
+      console.log("tried to localStorage.setItem(toDos)")
     }
   },[toDos])
 
@@ -58,5 +59,7 @@ export default function List() {
       {toDos.map(item => <Item key={item.id} item={item} setToDos={setToDos} />)}
       <SubmitNew toDos={toDos} setToDos={setToDos} />
     </fieldset>
+    <p>loader:{JSON.stringify(loader)}</p>
+    
   </div>
 }

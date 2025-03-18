@@ -7,15 +7,15 @@ const { v4: uuid } = require('uuid');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
-const data = [
-    { id: uuid(), toDo: "Do the dishes", done: true },
-    { id: uuid(), toDo: "Take out the trash", done: false }
-]
+// const data = [
+//     { id: uuid(), toDo: "Do the dishes", done: true },
+//     { id: uuid(), toDo: "Take out the trash", done: false }
+// ]
 
 app.use(express.static(path.join(__dirname, '/dist')));
-app.get("/api/toDos", (req, res) => {
-    res.send(data)
-})
+// app.get("/api/toDos", (req, res) => {
+//     res.send(data)
+// })
 app.post("/api/toDos", async (req, res) => {
     // data.push(req.body)
     // const toDo = new ToDo(req.body)
