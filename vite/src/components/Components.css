@@ -35,7 +35,8 @@
 
 .item-buttons {
     margin-left: 0.5em;
-    display: flex
+    margin-right:1em;
+    display: flex;
 }
 
 .item-info>label {
@@ -62,11 +63,10 @@
     padding: 0.6em;
 }
 
-.trash{
+.pencil, .trash{
+    margin-right:0.3em;
     color:rgb(75, 77, 79)
 }
-
-.pencil{
-    color:rgb(75, 77, 79)
-    /* color:rgb(88, 101, 242) */
+.pencil:hover, .trash:hover{
+    color:black
 }

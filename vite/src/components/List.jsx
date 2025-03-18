@@ -53,13 +53,10 @@ export default function List() {
 
   return <div className="list">
     <fieldset><legend>Things to do</legend>
-      {/* {toDos.length === 0 && <CircularProgress disableShrink />} */}
       {loader && <CircularProgress disableShrink />}
-      {/* maybe add a timeout for the spinner to go away */}
       {toDos.map(item => <Item key={item.id} item={item} setToDos={setToDos} />)}
       <SubmitNew toDos={toDos} setToDos={setToDos} />
     </fieldset>
-    <p>loader:{JSON.stringify(loader)}</p>
     
   </div>
 }

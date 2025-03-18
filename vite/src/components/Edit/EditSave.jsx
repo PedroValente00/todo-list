@@ -1,17 +1,19 @@
-// import CheckIcon from '@mui/icons-material/Check';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-export default function EditSave({item, setToDos,setBeingEdited,toDo }){
+export default function EditSave({ item, setToDos, setBeingEdited, toDo }) {
 
-    const style={
-        color: "#248624"
+    const style = {
+        color: "#248624",
+        ...(!toDo.length) && {filter:" sepia(1)"}
     }
 
     const handleClick = () => {
+        if (!toDo.length) return;
+
         setToDos(toDos => {
             return toDos.map(t => {
-                if(t.id === item.id) {
-                    const update = {...t, toDo:toDo}
+                if (t.id === item.id) {
+                    const update = { ...t, toDo: toDo }
                     return update
                 }
                 return t
@@ -19,7 +21,7 @@ export default function EditSave({item, setToDos,setBeingEdited,toDo }){
         });
         setBeingEdited(toggle => !toggle)
     }
-    
-    // return <CheckIcon className="icon" onClick={handleClick} />
-    return <CheckCircleIcon className="icon" onClick={handleClick} style={style} />
+
+    return <CheckCircleIcon className="icon" onClick={handleClick} style={style}/>
 }
+

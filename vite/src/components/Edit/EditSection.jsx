@@ -16,6 +16,7 @@ export default function EditSection({ item, setBeingEdited, setToDos }) {
 
         <EditCancel cancelEdit={setBeingEdited} />
         <EditSave item={item} setToDos={setToDos}
+        cancelEdit={setBeingEdited}
             setBeingEdited={setBeingEdited} toDo={toDo} />
     </div>
 }

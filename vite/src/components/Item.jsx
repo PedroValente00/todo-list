@@ -13,14 +13,11 @@ export default function Item({ item, setToDos }) {
         setToDos(toDos => {
             return toDos.map(todo => {
                 if(todo.id === item.id){
-                    console.log(todo)
                     return {...todo, done:e.target.checked }
                 }
                 return todo
             })
         })
-        //fix this (change is gone on refresh)
-
     }
 
     return <section className="item">
