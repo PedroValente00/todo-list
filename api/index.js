@@ -20,7 +20,15 @@ app.post("/api/toDos", async (req, res) => {
 })
 
 app.get("/api/save", async (req, res) => {
+    const toDo = new ToDo({id:uuid(),toDo:"whatevs",done:false})
+    await toDo.save()
     res.send("Request received")
+})
+
+app.get("/api/see",async (req, res) => {
+    const data = await ToDo.find({})
+    console.log(data)
+    res.send(data)
 })
 
 app.get("/*", (req, res) => { res.send("Page not found D:") })
