@@ -1,4 +1,4 @@
-/* imported in List.jsx */
+/* imported in App.jsx */
 .list {
     width: 50vw;
     margin: auto;
@@ -11,17 +11,20 @@
     margin: 1px;
 }
 
-.item:nth-child(odd){
+.item:nth-child(odd) {
     /* background-color: #98D2C0; */
     background-color: transparent;
 }
-.item:nth-child(even){
+
+.item:nth-child(even) {
     /* background-color: #4F959D; */
     background-color: transparent;
 }
 
 .item-info:has(>input[type='checkbox']:checked) {
     text-decoration: line-through;
+    font-style: italic;
+    opacity: 0.5;
 }
 
 .item-info {
@@ -35,7 +38,7 @@
 
 .item-buttons {
     margin-left: 0.5em;
-    margin-right:1em;
+    margin-right: 1em;
     display: flex;
 }
 
@@ -50,23 +53,57 @@
     margin: 0 0.1em;
 }
 
-.icon:hover{
-    filter:drop-shadow(1px 1px 5px rgb(212, 214, 214));
+.icon:hover {
+    filter: drop-shadow(1px 1px 5px rgb(212, 214, 214));
 }
 
-.edit{
+.edit {
     display: flex;
     align-items: center;
 }
 
-.edit-text{
+.edit-text {
     padding: 0.6em;
 }
 
-.pencil, .trash{
-    margin-right:0.3em;
-    color:rgb(75, 77, 79)
+.pencil,
+.trash {
+    margin-right: 0.3em;
+    color: rgb(75, 77, 79)
 }
-.pencil:hover, .trash:hover{
-    color:black
+
+.pencil:hover,
+.trash:hover {
+    color: black
 }
+
+.landing-outer{
+    text-align: center;
+    border: 1px solid black;
+}
+
+.landing-inner{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1em;
+    /* width: 50vw; */
+    /* margin: auto;     */
+}
+
+.landing-option{
+    padding: 1em;
+    box-shadow: 1px 1px 5px 2px #8c8c8c;
+}
+
+.landing-option h2{
+    margin: 0;
+}
+
+.landing-description ul{
+    list-style: none;
+    padding: 0;
+    font-family: monospace;
+    color: #9d9c9c;
+}
+

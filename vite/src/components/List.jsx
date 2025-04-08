@@ -2,8 +2,6 @@ import { useState, useEffect } from "react"
 import CircularProgress from '@mui/material/CircularProgress';
 import Item from "./Item"
 import SubmitNew from "./SubmitForm/SubmitNew"
-import "./Components.css"
-import "./SubmitForm/SubmitNew.css"
 
 export default function List() {
   const [toDos, setToDos] = useState([])

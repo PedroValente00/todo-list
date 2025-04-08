@@ -1,6 +1,6 @@
 //check if localStorage is supported in the browser being used
-function storageAvailable(type) {
-  console.log("localStorage script ran")
+// (copy-pasted from MDN, to be honest)
+export function storageAvailable(type) {
     let storage;
     try {
       storage = window[type];
@@ -18,6 +18,3 @@ function storageAvailable(type) {
       );
     }
   }
-
-exports = {storageAvailable}
-

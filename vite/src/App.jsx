@@ -1,14 +1,28 @@
+import Landing from "./components/Landing"
 import List from "./components/List"
-// import {storageAvailable} from "./utils"
+import Register from "./components/Authentication/Register"
+import {storageAvailable} from "./utils"
+import {BrowserRouter, Routes, Route} from "react-router"
+
+import "./components/Components.css"
+import "./components/SubmitForm/SubmitNew.css"
+import "./components/Authentication/Register.css"
 
 function App() {
-
-
+// if storageAvailable("localStorage"), then gray out/hide option
   return (
-    <>
-      {/* if (storageAvailable("localStorage")) { show this option  }  */}
-      <List />
-    </>
+    
+    <BrowserRouter>
+    <Routes>
+      
+    <Route path="/" element={<Landing />} /> 
+    <Route path="/todos" element={<List />} /> 
+    <Route path="/register" element={<Register />} /> 
+
+
+      </Routes>
+      </BrowserRouter>
+
   )
 }
 

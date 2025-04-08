@@ -1,0 +1,32 @@
+/* imported in App.jsx */
+
+.register-form{
+    width: 300px;
+    margin: auto;
+}
+
+.register-input{
+    padding: 0.8em;
+    margin-bottom: 1em;
+    width: 100%;
+}
+.register-input:not(submitBtn){
+    padding-right: 2.5em;
+}
+
+.register-input:focus{
+    border: 2px solid #5551ff;
+}
+
+.register-error-message{
+    color: rgb(164 100 100);
+    margin-top: -0.8em;
+    margin-bottom: 0.1em;
+}
+
+/* section:has(.err)::before{
+    content: "✓";
+    position: relative;
+    top: 2em;
+    left: 15em;
+} */

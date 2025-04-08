@@ -31,8 +31,6 @@ export default function SubmitNew({toDos, setToDos}) {
             maxLength={80} />
         
         <button className="submitBtn" type="submit">Submit</button>
-        {/* <SubmitButton /> */}
-
     </form>
 }
 
