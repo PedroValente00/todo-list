@@ -17,7 +17,9 @@ export default function Landing() {
                 <h2>User</h2>
                 <PersonIcon className="landing-avatar" style={avatar} />
                 <div>
+                    <Link to={"/register"}>
                     <button type="button">Register</button>
+                    </Link>
                     <button type="button">Sign in</button>
                 </div>
                 <div className="landing-description">
