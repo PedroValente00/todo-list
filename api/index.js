@@ -27,7 +27,11 @@ app.get("/api/save", async (req, res) => {
     res.send("Request received")
 })
 
-app.get("/*", (req, res) => { res.send("Page not found D:") })
+// app.get("/register", (req,res) => {
+//     res.redirect("/register")
+// })
+
+app.get("/*", (req, res) => res.redirect("/"))
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log("Server ready on port", PORT));

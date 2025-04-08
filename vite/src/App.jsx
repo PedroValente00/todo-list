@@ -15,7 +15,7 @@ function App() {
     <BrowserRouter>
     <Routes>
       
-    <Route path="/" element={<Landing />} /> 
+    <Route index element={<Landing />} /> 
     <Route path="/todos" element={<List />} /> 
     <Route path="/register" element={<Register />} /> 
 
