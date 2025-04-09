@@ -1,22 +1,25 @@
 import { useForm } from 'react-hook-form';
+import axios from "axios"
+import { useState } from 'react';
 
 export default function Register() {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const [errorMsg, setErrorMsg] = useState()
+    // const onSubmit = data => console.log(data);
     // console.log("errors:")
     // console.log(errors);
 
-    // const handleChange = (e) => {
-    //     const err = errors[e.target.name]
-    //     if (err){
-    //         err.ref.classList.add("err")
-    //         console.log(err)
-    //     }else{
-    //         if(err.ref.classList.contains("err")){
-    //             err.ref.classList.remove("err")
-    //         }
-    //     }
-    // }
+    const onSubmit = async data => {
+        const registration = await axios.post('/api/register', data);
+        const response = registration.data;
+        console.log(response)
+        if (response.error){
+            setErrorMsg(response.msg)
+        } else{
+            alert(response.msg)
+        }
+        
+    }
 
     return (
         <form className='register-form' onSubmit={handleSubmit(onSubmit)} 
@@ -27,28 +30,30 @@ export default function Register() {
 
                 <section>
                     <input className="register-input" type="text" placeholder="Name"
-                        {...register("Name", { required: true, minLength: 3, maxLength: 20 })} />
+                        {...register("name", { required: true, minLength: 3, maxLength: 20 })} />
                     
-                    {(errors.Name && errors.Name.type === "required") && <div className='register-error-message'>Name required.</div>}
-                    {(errors.Name && errors.Name.type === "minLength") && <div className='register-error-message'>Name must be longer.</div>}
-                    {(errors.Name && errors.Name.type === "maxLength") && <div className='register-error-message'>Name must 20 characters or less.</div>}
+                    {(errors.name && errors.name.type === "required") && <div className='register-error-message'>Name required.</div>}
+                    {(errors.name && errors.name.type === "minLength") && <div className='register-error-message'>Name must be longer.</div>}
+                    {(errors.name && errors.name.type === "maxLength") && <div className='register-error-message'>Name must 20 characters or less.</div>}
 
                 </section>
 
                 <section>
                     <input className="register-input" type="email" placeholder="Email"
-                        {...register("Email", { required: true, minLength: 5, maxLength: 80, pattern: /^\S+@\S+$/i })} />
-                    {(errors.Email && errors.Email.type === "required") && <div className='register-error-message'>Email required.</div>}
-                    {(errors.Email && errors.Email.type === "minLength") && <div className='register-error-message'>Email must be longer.</div>}
-                    {(errors.Email && errors.Email.type === "maxLength") && <div className='register-error-message'>Name must 80 characters or less.</div>}
+                        {...register("email", { required: true, minLength: 5, maxLength: 80, pattern: /^\S+@\S+$/i })} />
+                    {(errors.email && errors.email.type === "required") && <div className='register-error-message'>Email required.</div>}
+                    {(errors.email && errors.email.type === "minLength") && <div className='register-error-message'>Email must be longer.</div>}
+                    {(errors.email && errors.email.type === "maxLength") && <div className='register-error-message'>Name must 80 characters or less.</div>}
                 </section>
 
                 <section>
-                    <input className="register-input" type="password" placeholder="Password" {...register("Password", { required: true, minLength: 8, maxLength: 80 })} />
-                        {(errors.Password && errors.Password.type === "required") && <div className='register-error-message'>Password required.</div>}
-                        {(errors.Password && errors.Password.type === "minLength") && <div className='register-error-message'>Password must be longer.</div>}
-                        {(errors.Password && errors.Password.type === "maxLength") && <div className='register-error-message'>Password must 80 characters or less.</div>}
+                    <input className="register-input" type="password" placeholder="Password" {...register("password", { required: true, minLength: 8, maxLength: 80 })} />
+                        {(errors.password && errors.password.type === "required") && <div className='register-error-message'>Password required.</div>}
+                        {(errors.password && errors.password.type === "minLength") && <div className='register-error-message'>Password must be longer.</div>}
+                        {(errors.password && errors.password.type === "maxLength") && <div className='register-error-message'>Password must 80 characters or less.</div>}
                 </section>
+
+                {errorMsg && <div className='errorMsg'>{errorMsg}</div> }
 
                 <input className='submitBtn register-input' type="submit" />
             </fieldset>

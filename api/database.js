@@ -6,6 +6,7 @@ mongoose.connect(process.env.MONGODB_URI)
      .catch(e => console.log("something went wrong:", e))
 
 const UserSchema = new mongoose.Schema({
+     name: { required: true, type: String },
      email: { required: true, type: String },
      password: { required: true, type: String }
 })

@@ -24,6 +24,15 @@
     margin-bottom: 0.1em;
 }
 
+.errorMsg{
+    padding: 0.5em;
+    background-color: rgb(198 75 75);
+    color: white;
+    margin: 0.1em 0.1em 0.5em;
+    text-align: center;
+    border: 1px solid red;
+}
+
 /* section:has(.err)::before{
     content: "✓";
     position: relative;
