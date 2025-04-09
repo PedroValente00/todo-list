@@ -19,7 +19,6 @@ function App() {
     <Route path="/todos" element={<List />} /> 
     <Route path="/register" element={<Register />} /> 
 
-
       </Routes>
       </BrowserRouter>
 

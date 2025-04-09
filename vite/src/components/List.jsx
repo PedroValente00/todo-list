@@ -46,7 +46,6 @@ export default function List() {
   },[toDos])
 
 
-
   
 
   return <div className="list">

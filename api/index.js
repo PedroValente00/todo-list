@@ -27,10 +27,6 @@ app.get("/api/save", async (req, res) => {
     res.send("Request received")
 })
 
-// app.get("/register", (req,res) => {
-//     res.redirect("/register")
-// })
-
 app.get("/*", (req, res) => res.redirect("/"))
 
 const PORT = process.env.PORT || 3000;
