@@ -2,8 +2,9 @@ import { useState, useEffect } from "react"
 import CircularProgress from '@mui/material/CircularProgress';
 import Item from "./Item"
 import SubmitNew from "./SubmitForm/SubmitNew"
+import axios from "axios"
 
-export default function List() {
+export default function List({user, setUser}) {
   const [toDos, setToDos] = useState([])
   const locallyStoredData = localStorage.getItem("toDos");
   const [loader, setLoader] = useState(true)
@@ -49,6 +50,16 @@ export default function List() {
   
 
   return <div className="list">
+    {JSON.stringify(user)}
+    <button onClick={()=>{ fetch("/api/logout", {method:"POST"})
+      .then(data => console.log(data))
+    }}>log out</button>
+
+    <button onClick={async ()=>{ 
+          const req = await axios.get('/api/user')
+          console.log(req)
+    }}>find user</button>
+
     <fieldset><legend>Things to do</legend>
       {loader && <CircularProgress disableShrink />}
       {toDos.map(item => <Item key={item.id} item={item} setToDos={setToDos} />)}

@@ -1,9 +1,9 @@
 import { useForm } from 'react-hook-form';
 import axios from "axios"
 import { useState,useEffect } from 'react';
-import { useNavigate } from "react-router";
+import { useNavigate,Link } from "react-router";
 
-export default function Register({user, setUser}) {
+export default function Login({user, setUser}) {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [errorMsg, setErrorMsg] = useState()
     let navigate = useNavigate();
@@ -21,6 +21,7 @@ useEffect(()=>{if (user) navigate("/todos")},[])
     return (<>
         {
          user ? <div><p>You are already logged in.</p>
+         {/* <p>Click <Link to="/todos">here</Link> to go to your "to do" list.</p> */}
          </div>
          :
          <form className='register-form' onSubmit={handleSubmit(onSubmit)}>
@@ -58,6 +59,8 @@ useEffect(()=>{if (user) navigate("/todos")},[])
                 <input className='submitBtn register-input' type="submit" />
             </fieldset>
         </form>
-        }                
+        }
+                
+        {/* redirect and flash message */}
         </> );
 }

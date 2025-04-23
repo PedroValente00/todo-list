@@ -1,28 +1,52 @@
 import Landing from "./components/Landing"
 import List from "./components/List"
 import Register from "./components/Authentication/Register"
-import {storageAvailable} from "./utils"
-import {BrowserRouter, Routes, Route} from "react-router"
-
+import Login from "./components/Authentication/Login"
+import Error404 from "./components/Error404"
+import { storageAvailable } from "./utils"
+import { BrowserRouter, Routes, Route } from "react-router"
 import "./components/Components.css"
 import "./components/SubmitForm/SubmitNew.css"
-import "./components/Authentication/Register.css"
-
+import "./components/Authentication/Authentication.css"
+import "./components/Navbar/Navbar.css"
+import { useState, useEffect } from "react"
+import axios from "axios"
+import NavBar from "./components/NavBar/Navbar"
 function App() {
-// if storageAvailable("localStorage"), then gray out/hide option
-  return (
-    
+
+  // const [user, setUser] = useState({name:"",email:"",password:"",id:""})
+  const [user, setUser] = useState()
+  // if storageAvailable("localStorage"), then gray out/hide option
+
+  useEffect(() => {
+    async function getUser() {
+      console.log("useeffect from App:")
+      const user = await axios.get('/api/user');
+      console.log(user.data)
+      setUser(user.data)
+    } getUser()
+  },[])
+  return (<>
     <BrowserRouter>
-    <Routes>
-      
-    <Route index element={<Landing />} /> 
-    <Route path="/todos" element={<List />} /> 
-    <Route path="/register" element={<Register />} /> 
+
+    <NavBar user={user} setUser={setUser} />
+
+      <Routes>
+
+        <Route index element={<Landing />} />
+
+        <Route path="/todos" element={<List user={user} setUser={setUser} />} />
+
+        <Route path="/register" element={<Register user={user} setUser={setUser} />} />
+
+        <Route path="/login" element={<Login user={user} setUser={setUser} />} />
+
+        <Route path="/*" element={<Error404 />} />
 
       </Routes>
-      </BrowserRouter>
+    </BrowserRouter>
 
-  )
+    </>)
 }
 
 export default App

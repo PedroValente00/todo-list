@@ -1,4 +1,5 @@
 /* imported in App.jsx */
+
 .list {
     width: 50vw;
     margin: auto;
@@ -79,21 +80,25 @@
 
 .landing-outer{
     text-align: center;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 .landing-inner{
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 1em;
-    /* width: 50vw; */
-    /* margin: auto;     */
+    column-gap: 2em;
+    row-gap: 2em;
+    margin:2em
+    /* max-width: 80vw;
+    margin: auto; */
 }
 
 .landing-option{
     padding: 1em;
     box-shadow: 1px 1px 5px 2px #8c8c8c;
+    flex: 1;
+    max-width: 600px;
 }
 
 .landing-option h2{
@@ -107,3 +112,15 @@
     color: #9d9c9c;
 }
 
+.landing-btn-div{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    gap: 0.1em
+}
+
+.landing-inner button{
+    width: 200px;
+}

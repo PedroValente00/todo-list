@@ -2,15 +2,27 @@ const express = require("express");
 const path = require("path")
 const app = express();
 const { v4: uuid } = require('uuid');
-const {User, ToDo} = require("./database")
-const bcrypt = require('bcrypt');
+const { User, ToDo } = require("./database")
 const Joi = require('joi');
+const session = require('express-session')
+const MongoStore = require('connect-mongo');
+const bcrypt = require('bcrypt');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
+app.use(session({
+    secret: 'todo app',
+    store: MongoStore.create({ mongoUrl: process.env.MONGODB_URI }),
+    resave: false, saveUninitialized: true,
+}))
 app.use(express.static(path.join(__dirname, '/dist')));
+app.use((req, res, next) => {
+    console.log("from middleware:")
+    console.log(req.session)
+    next()
+})
 
-app.get("/api/toDos",async (req, res) => {
+app.get("/api/toDos", async (req, res) => {
     const data = await ToDo.find({})
     console.log(data)
     res.send(data)
@@ -22,33 +34,62 @@ app.post("/api/toDos", async (req, res) => {
 })
 
 app.get("/api/save", async (req, res) => {
-    const toDo = new ToDo({id:uuid(),toDo:"whatevs",done:false})
+    const toDo = new ToDo({ id: uuid(), toDo: "whatevs", done: false })
     await toDo.save()
     res.send("Request received")
 })
 
-app.post("/api/register", (req,res) => {
+app.post("/api/register", async (req, res) => {
     const schema = Joi.object({
         name: Joi.string().alphanum().min(3).max(20).required(),
         email: Joi.string().email({ minDomainSegments: 2, tlds: false })
-        .min(5).max(80).required(),
+            .min(5).max(80).required(),
         password: Joi.string().alphanum().min(8).max(80).required(),
     })
-    const {name,email,password} = req.body;
-    const registration = schema.validate({name,email,password})
-    const err = registration.error
+    const { name, email, password } = req.body;
+    const submission = schema.validate({ name, email, password })
+    const err = submission.error
     const response = {
         error: err ? true : false,
-        msg : err ? err.details[0].message : "success msg"
+        msg: err ? err.details[0].message : "registered successfully",
     }
-    console.log(response)
-    // if(err) return res.send(err.details[0].message)
-    // res.send(registration)
-    res.send(response)
-    //register in database,login,etc (bcrypt stuff)
-    
-    
+
+    const alreadyExists = await User.findOne({ email })
+    if (alreadyExists) {
+        response.error = true;
+        response.msg = "Email already in use"
+    }
+
+    if (err || alreadyExists) {
+        console.log("error")
+        return res.send(response)
+    } else {
+        const newUser = new User({
+            name,
+            email,
+            password: await bcrypt.hash(password, 12)
+        })
+        const user = await newUser.save();
+        req.session.user_id = user._id;
+        response.user = user 
+        res.send(response)
+    }
 })
+
+app.get("/api/user", async (req, res) => {
+    console.log("from /api/user")
+    console.log(req.session)
+    const user = await User.findById(req.session.user_id)
+    if (user) console.log(user)
+    res.send(user)
+})
+
+app.post('/api/logout', function (req, res) {
+    console.log("logging out")
+    req.session.destroy()
+    res.end()
+})
+
 
 app.get("*", (req, res) => {
     res.redirect("/")

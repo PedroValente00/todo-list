@@ -1,0 +1,28 @@
+/* imported in App.jsx */
+
+.navbar {
+  margin-bottom: 2em;
+  box-shadow: none;
+}
+
+.nav-left{
+  display: flex;
+  flex-grow: 1;
+}
+
+.navbar a {
+  color:white;
+  opacity: 0.5;
+}
+
+.navbar a:hover {
+  opacity: 0.9;
+}
+
+.logout{
+  color:white;
+  opacity: 0.5;
+  cursor: pointer;
+}.logout:hover{
+  opacity: 0.9;
+}
