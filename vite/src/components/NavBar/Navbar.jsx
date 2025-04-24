@@ -24,8 +24,8 @@ export default function NavBar({user,setUser}) {
     {
               !user ?
               <>
-               <NavBarLink destination={"/register"} text={"Register"} />            
                <NavBarLink destination={"/login"} text={"Login"} />
+               <NavBarLink destination={"/register"} text={"Register"} />            
             </>
               :
               <span className='logout' onClick={handleLogout} >Logout</span>

@@ -27,7 +27,7 @@ export default function Landing() {
                 <div className="landing-description">
                     <ul>
                         <li>Your data is saved in your account.</li>
-                        <li>You can only see it when you're logged in.</li>
+                        <li>You can only access it when you're logged in.</li>
                     </ul>
                 </div>
             </section>

@@ -75,6 +75,37 @@ app.post("/api/register", async (req, res) => {
         res.send(response)
     }
 })
+app.post("/api/login", async (req, res) => {
+    const schema = Joi.object({
+        email: Joi.string().email({ minDomainSegments: 2, tlds: false })
+            .min(5).max(80).required(),
+        password: Joi.string().alphanum().min(8).max(80).required(),
+    })
+    const { email, password } = req.body;
+    const submission = schema.validate({ email, password })
+    const err = submission.error
+    const response = {
+        error: err ? true : false,
+        msg: err ? err.details[0].message : "logged in successfully",
+    }
+    if(err) return res.send(response)
+    const user = await User.findOne({ email })
+    if (!user) {
+        response.error = true;
+        response.msg = "Incorrect username or password."
+        return res.send(response)
+    }
+        const passwordMatch = await bcrypt.compare(password, user.password );
+        if (!passwordMatch) {
+            response.error = true;
+            response.msg = "Incorrect username or password."
+            return res.send(response)
+        }
+        req.session.user_id = user._id;
+        response.user = user 
+        res.send(response)
+    
+})
 
 app.get("/api/user", async (req, res) => {
     console.log("from /api/user")
