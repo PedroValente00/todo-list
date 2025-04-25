@@ -2,6 +2,7 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import NavBarLink from './NavbarLink';
+import AvatarLogo from './AvatarLogo';
 
 export default function NavBar({user,setUser}) {
 
@@ -26,9 +27,13 @@ export default function NavBar({user,setUser}) {
               <>
                <NavBarLink destination={"/login"} text={"Login"} />
                <NavBarLink destination={"/register"} text={"Register"} />            
+               <AvatarLogo user={user} />
             </>
               :
-              <span className='logout' onClick={handleLogout} >Logout</span>
+              <>
+              <div className='logout' onClick={handleLogout} >Logout</div>
+              <AvatarLogo user={user} />
+              </>
     }
     </div>
         </Toolbar>

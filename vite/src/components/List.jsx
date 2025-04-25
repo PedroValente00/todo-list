@@ -50,15 +50,15 @@ export default function List({user, setUser}) {
   
 
   return <div className="list">
-    {JSON.stringify(user)}
-    <button onClick={()=>{ fetch("/api/logout", {method:"POST"})
+    {/* {JSON.stringify(user)} */}
+    {/* <button onClick={()=>{ fetch("/api/logout", {method:"POST"})
       .then(data => console.log(data))
     }}>log out</button>
 
     <button onClick={async ()=>{ 
           const req = await axios.get('/api/user')
           console.log(req)
-    }}>find user</button>
+    }}>find user</button> */}
 
     <fieldset><legend>Things to do</legend>
       {loader && <CircularProgress disableShrink />}

@@ -10,6 +10,11 @@
   flex-grow: 1;
 }
 
+.nav-right{
+  display: flex;
+  align-items: center;
+}
+
 .navbar a {
   color:white;
   opacity: 0.5;
@@ -25,4 +30,8 @@
   cursor: pointer;
 }.logout:hover{
   opacity: 0.9;
+}
+
+.avatar-logo{
+  margin: 0 1em;
 }
