@@ -3,7 +3,6 @@ import List from "./components/List"
 import Register from "./components/Authentication/Register"
 import Login from "./components/Authentication/Login"
 import Error404 from "./components/Error404"
-import { storageAvailable } from "./utils"
 import { BrowserRouter, Routes, Route } from "react-router"
 import "./components/Components.css"
 import "./components/SubmitForm/SubmitNew.css"
@@ -14,9 +13,7 @@ import axios from "axios"
 import NavBar from "./components/NavBar/Navbar"
 function App() {
 
-  // const [user, setUser] = useState({name:"",email:"",password:"",id:""})
   const [user, setUser] = useState()
-  // if storageAvailable("localStorage"), then gray out/hide option
 
   useEffect(() => {
     async function getUser() {

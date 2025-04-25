@@ -16,11 +16,18 @@ export default function NavBar({user,setUser}) {
       <AppBar position="static">
         <Toolbar>
 
-        <div className="nav-left">
+        {/* <div className="nav-left">
           {!user && <NavBarLink destination={"/"} text={"Home"} />}
         <NavBarLink destination={"/todos"} text={"To-do list"} />
+        </div> */}
+          <div className="nav-left">
+          {!user?
+           <NavBarLink destination={"/"} text={"Home"} />
+           :
+        <NavBarLink destination={"/todos"} text={"To-do list"} />
+          }
         </div>
-          
+        
     <div className="nav-right">
     {
               !user ?
