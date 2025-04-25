@@ -33,7 +33,7 @@ function App() {
 
       <Routes>
 
-        <Route index element={<Landing />} />
+        <Route index element={<Landing user={user} />} />
 
         <Route path="/todos" element={<List user={user} setUser={setUser} />} />
 

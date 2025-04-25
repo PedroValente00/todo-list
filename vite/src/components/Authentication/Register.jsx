@@ -29,7 +29,7 @@ useEffect(()=>{if (user) navigate("/todos")},[])
                 <legend>Register</legend>
 
                 <section>
-                    <input className="auth-input" type="text" placeholder="Name"
+                    <input className="auth-input" type="text" placeholder="Name" maxLength={20}
                         {...register("name", { required: true, minLength: 3, maxLength: 20 })} />
                     
                     {(errors.name && errors.name.type === "required") && <div className='auth-error-message'>Name required.</div>}
@@ -39,7 +39,7 @@ useEffect(()=>{if (user) navigate("/todos")},[])
                 </section>
 
                 <section>
-                    <input className="auth-input" type="email" placeholder="Email"
+                    <input className="auth-input" type="email" placeholder="Email" maxLength={80}
                         {...register("email", { required: true, minLength: 5, maxLength: 80, pattern: /^\S+@\S+$/i })} />
                     {(errors.email && errors.email.type === "required") && <div className='auth-error-message'>Email required.</div>}
                     {(errors.email && errors.email.type === "minLength") && <div className='auth-error-message'>Email must be longer.</div>}
@@ -47,7 +47,7 @@ useEffect(()=>{if (user) navigate("/todos")},[])
                 </section>
 
                 <section>
-                    <input className="auth-input" type="password" placeholder="Password" {...register("password", { required: true, minLength: 8, maxLength: 80 })} />
+                    <input className="auth-input" type="password" placeholder="Password" maxLength={80} {...register("password", { required: true, minLength: 8, maxLength: 80 })} />
                         {(errors.password && errors.password.type === "required") && <div className='auth-error-message'>Password required.</div>}
                         {(errors.password && errors.password.type === "minLength") && <div className='auth-error-message'>Password must be longer.</div>}
                         {(errors.password && errors.password.type === "maxLength") && <div className='auth-error-message'>Password must 80 characters or less.</div>}

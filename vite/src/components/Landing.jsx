@@ -1,9 +1,14 @@
 import List from "./List"
-import { Link } from "react-router";
+import { useNavigate, Link } from "react-router";
 import PersonOffIcon from '@mui/icons-material/PersonOff';
 import PersonIcon from '@mui/icons-material/Person';
+import { useEffect } from "react"
 
-export default function Landing() {
+export default function Landing({ user }) {
+    let navigate = useNavigate();
+    useEffect(() => {
+        if (user) navigate("/todos")
+    }, [user])
 
     const avatar = {
         //gotta style it inline because otherwise it's overwritten
@@ -18,10 +23,10 @@ export default function Landing() {
                 <PersonIcon className="landing-avatar" style={avatar} />
                 <div className="landing-btn-div">
                     <Link to={"/register"}>
-                    <button className="submitBtn">Register</button>
+                        <button className="submitBtn">Register</button>
                     </Link>
                     <Link to={"/login"}>
-                    <button className="submitBtn">Login</button>
+                        <button className="submitBtn">Login</button>
                     </Link>
                 </div>
                 <div className="landing-description">
@@ -39,7 +44,7 @@ export default function Landing() {
                         <button className="submitBtn">Continue as guest</button>
                     </Link>
                 </div>
-                
+
                 <div className="landing-description">
                     <ul>
                         <li>You don't need to create an account.</li>

@@ -17,7 +17,7 @@ export default function NavBar({user,setUser}) {
         <Toolbar>
 
         <div className="nav-left">
-        <NavBarLink destination={"/"} text={"Home"} />
+          {!user && <NavBarLink destination={"/"} text={"Home"} />}
         <NavBarLink destination={"/todos"} text={"To-do list"} />
         </div>
           
