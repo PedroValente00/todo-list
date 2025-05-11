@@ -39,7 +39,7 @@ export default function Landing({ user }) {
                     <h2>Guest</h2>
                     <PersonOffIcon className="landing-avatar" style={avatar} />
                     <div>
-                        <Link to="/todos">
+                        <Link to="/todos" >
                             <button className="submitBtn">Continue as guest</button>
                         </Link>
                     </div>

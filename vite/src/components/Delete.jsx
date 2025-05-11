@@ -12,6 +12,7 @@ export default function Edit({ item, setToDos }) {
             const update = items.filter(i => i.id !== item.id)
             return [...update]
         })
+        
     }
 
     return <div onMouseEnter={() => setHovering(true)}

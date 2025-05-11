@@ -17,12 +17,13 @@ function App() {
 
   useEffect(() => {
     async function getUser() {
-      console.log("useeffect from App:")
       const user = await axios.get('/api/user');
+      console.log("useeffect from App:")
       console.log(user.data)
       setUser(user.data)
     } getUser()
   },[])
+
   return (<>
     <BrowserRouter>
 
@@ -32,7 +33,7 @@ function App() {
 
         <Route index element={<Landing user={user} />} />
 
-        <Route path="/todos" element={<List user={user} setUser={setUser} />} />
+        <Route path="/todos" element={<List user={user} setUser={setUser}/>} />
 
         <Route path="/register" element={<Register user={user} setUser={setUser} />} />
 

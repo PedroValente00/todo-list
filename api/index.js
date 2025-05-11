@@ -1,4 +1,5 @@
 const express = require("express");
+const router = express.Router()
 const path = require("path")
 const app = express();
 const { v4: uuid } = require('uuid');
@@ -7,6 +8,7 @@ const Joi = require('joi');
 const session = require('express-session')
 const MongoStore = require('connect-mongo');
 const bcrypt = require('bcrypt');
+// const routes = require("./routes")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
@@ -22,17 +24,77 @@ app.use((req, res, next) => {
     next()
 })
 
-app.get("/api/toDos", async (req, res) => {
+//------------------------------------------------------
+// app.use("/api/toDos", routes)
+//organize all routes inside the routes folder
+//put a state on landing page so I can see if user or localstorage chosen
+
+app.route("/api/toDos")
+.get(async (req, res) => {
+    //might delete
+    //only being used by buttons in List component
     const data = await ToDo.find({})
+    .populate("user")
     console.log(data)
     res.send(data)
 })
-app.post("/api/toDos", async (req, res) => {
-    const toDo = new ToDo(req.body)
+.post( async (req, res) => {
+    const schema = Joi.object({
+        id: Joi.string().required(),
+        toDo: Joi.string().required(),
+        done: Joi.bool().required(),
+    })
+    const validation = schema.validate(req.body)
+    if (validation.error) return res.end()
+
+    const toDo = new ToDo(validation.value)
+    toDo.user = req.session.user_id;
+
+    const user = await User.findById(toDo.user);
+    user.toDos.push(toDo)
+    await user.save()
+    // console.log(toDo)
     await toDo.save();
-    res.send("to do submission received")
 })
 
+
+// app.get("/api/toDos", async (req, res) => {
+//     //might delete
+//     //only being used by buttons in List component
+//     const data = await ToDo.find({})
+//     .populate("user")
+//     console.log(data)
+//     res.send(data)
+// })
+// app.post("/api/toDos", async (req, res) => {
+//     try {
+//     const schema = Joi.object({
+//         id: Joi.string().required(),
+//         toDo: Joi.string().required(),
+//         done: Joi.bool().required(),
+//     })
+//     const validation = schema.validate(req.body)
+//     if (validation.error) return res.end()
+
+//     const toDo = new ToDo(validation.value)
+//     toDo.user = req.session.user_id;
+
+//     const user = await User.findById(toDo.user);
+//     user.toDos.push(toDo)
+//     await user.save()
+//     // console.log("saving this toDo:")
+//     // console.log(toDo)
+//     await toDo.save();
+// } catch (error) {
+//         console.log(error)
+// }
+// })
+app.get("/api/toDosByUser", async (req, res) => {
+    const userTodos = await ToDo.find({user:req.session.user_id})
+    console.log(userTodos)
+    res.send(userTodos)
+})
+//------------------------------------------------------
 app.get("/api/save", async (req, res) => {
     const toDo = new ToDo({ id: uuid(), toDo: "whatevs", done: false })
     await toDo.save()
@@ -71,7 +133,7 @@ app.post("/api/register", async (req, res) => {
         })
         const user = await newUser.save();
         req.session.user_id = user._id;
-        response.user = user 
+        response.user = user
         res.send(response)
     }
 })
@@ -88,31 +150,43 @@ app.post("/api/login", async (req, res) => {
         error: err ? true : false,
         msg: err ? err.details[0].message : "logged in successfully",
     }
-    if(err) return res.send(response)
+    if (err) return res.send(response)
     const user = await User.findOne({ email })
     if (!user) {
         response.error = true;
         response.msg = "Incorrect username or password."
         return res.send(response)
     }
-        const passwordMatch = await bcrypt.compare(password, user.password );
-        if (!passwordMatch) {
-            response.error = true;
-            response.msg = "Incorrect username or password."
-            return res.send(response)
-        }
-        req.session.user_id = user._id;
-        response.user = user 
-        res.send(response)
-    
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+        response.error = true;
+        response.msg = "Incorrect username or password."
+        return res.send(response)
+    }
+    req.session.user_id = user._id;
+    const userInfo = await user.populate("toDos")
+    response.user = {
+        _id: userInfo._id,
+        name: userInfo.name,
+        email: userInfo.email,
+        toDos: userInfo.toDos
+    }
+    res.send(response)
+
 })
 
 app.get("/api/user", async (req, res) => {
     console.log("from /api/user")
-    console.log(req.session)
     const user = await User.findById(req.session.user_id)
-    if (user) console.log(user)
-    res.send(user)
+    .populate("toDos")
+    // console.log(user)
+    // res.send(user)
+    if (user) return res.send({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        toDos: user.toDos
+    })
 })
 
 app.post('/api/logout', function (req, res) {

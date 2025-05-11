@@ -11,7 +11,7 @@ export default function EditSection({ item, setBeingEdited, setToDos }) {
     }
 
     return <div className="edit">
-        <input type="text" name={item.id} id={item.id}
+        <input type="text" name={item.id} id={item.id} size={60}
             value={toDo} onChange={handleChange} className="edit-text" />
 
         <EditCancel cancelEdit={setBeingEdited} />

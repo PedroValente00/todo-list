@@ -12,7 +12,11 @@ export default function Login({user, setUser}) {
         const submission = await axios.post('/api/login', data);
         const response = submission.data;
         if (response.error) return setErrorMsg(response.msg)
+            console.log("logged in!")
+        console.log(response.user)
         setUser(response.user) 
+        // setUser("Doesn't matter. useEffect in App component will update User") 
+
         navigate("/todos");
     }
 

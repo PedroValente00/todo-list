@@ -2,24 +2,23 @@ import { useState,useEffect } from "react"
 import axios from "axios"
 import { v4 as uuid } from 'uuid';
 
-export default function SubmitNew({toDos, setToDos}) {
+export default function SubmitNew({toDos, setToDos, user}) {
 
     const [newToDo, setNewToDo] = useState("")
     const handleChange = (e) => {
         setNewToDo(e.target.value)
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
         if(!newToDo.length) return;
         const capFirst = newToDo.charAt(0).toUpperCase();
         const capRest = newToDo.slice(1);
         const capitalizedNewToDo = `${capFirst}${capRest}`
         const submission = {id:uuid(), toDo:capitalizedNewToDo, done:false }
-        //do database later with authentication
-        // axios.post('/api/toDos', submission);
+
+        if (user) await axios.post('/api/toDos', submission);
         setToDos(toDos => [...toDos, submission])
-        //triggers useEffect in parent List component
         setNewToDo("")
     }
 
@@ -28,7 +27,7 @@ export default function SubmitNew({toDos, setToDos}) {
 
         <input type="text" name="newToDo" id="newTodo"
             value={newToDo} onChange={handleChange}
-            maxLength={80} />
+            maxLength={80} placeholder="Take out the trash and pay the bills" />
         
         <button className="submitBtn" type="submit">Submit</button>
     </form>

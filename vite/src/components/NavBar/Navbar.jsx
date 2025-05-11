@@ -29,6 +29,7 @@ export default function NavBar({user,setUser}) {
         </div>
         
     <div className="nav-right">
+      {/* {JSON.stringify(user)} */}
     {
               !user ?
               <>
