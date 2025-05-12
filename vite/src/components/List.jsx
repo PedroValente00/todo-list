@@ -72,20 +72,21 @@ export default function List({ user }) {
       console.log(req.data)
     }}>get THIS user</button>
 
-    {/* <button onClick={async () => {
+    <button onClick={async () => {
       const req = await axios.get('/api/toDos')
       console.log(req.data)
-    }}>get all todos</button> */}
-{/* 
+    }}>get all todos</button>
+
     <button onClick={async () => {
       const req = await axios.get('/api/toDosByUser')
       console.log(req.data)
-    }}>get todos by this user</button> */}
+    }}>get todos by this user</button>
 
     <fieldset><legend>Things to do</legend>
       {loader && <CircularProgress disableShrink />}
       {toDos.length ?
-        toDos.map(item => <Item key={item.id} item={item} setToDos={setToDos} />)
+        toDos.map(item => <Item key={item.id} item={item}
+           setToDos={setToDos} user={user} />)
         : <div style={{ fontFamily: "italic" }}>
           {/* You have no tasks yet. Maybe you'd like to submit a new one? */}
         </div>

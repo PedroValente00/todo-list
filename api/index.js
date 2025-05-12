@@ -56,7 +56,22 @@ app.route("/api/toDos")
     // console.log(toDo)
     await toDo.save();
 })
-
+.delete(async (req,res) => {
+    const item = req.body._id;
+    await ToDo.findByIdAndDelete(item)
+    res.end()
+})
+.patch(async (req,res) => {
+    if(req.body.newToDo){
+        console.log("first")
+        const {id,newToDo} = req.body;
+        return await ToDo.findByIdAndUpdate(id,{toDo:newToDo},{runValidators:true})
+    }else{
+        console.log("second")
+        const {id,done} = req.body;
+        return await ToDo.findByIdAndUpdate(id,{done},{runValidators:true})
+    }
+})
 
 // app.get("/api/toDos", async (req, res) => {
 //     //might delete

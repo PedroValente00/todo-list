@@ -3,7 +3,7 @@ import Pencil from "./Pencil"
 import Delete from "./Delete"
 import EditSection from "./Edit/EditSection"
 
-export default function Item({ item, setToDos }) {
+export default function Item({ item, setToDos, user }) {
 
     const [checked, setChecked] = useState(item.done)
     const [beingEdited, setBeingEdited] = useState(false)
@@ -17,12 +17,25 @@ export default function Item({ item, setToDos }) {
                 }
                 return todo
             })
-        })
+        });
+        if (user) {
+            const payload = JSON.stringify({
+                done: !checked,
+                id: item._id
+            });
+            console.log("payload")
+            console.log(payload)
+            fetch("/api/toDos", {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: payload
+            })
+        }
     }
 
     return <section className="item">
         {beingEdited ?
-            <EditSection item={item} setToDos={setToDos}
+            <EditSection item={item} setToDos={setToDos} user={user}
                 beingEdited={beingEdited} setBeingEdited={setBeingEdited} />
             :
             <>
@@ -34,7 +47,7 @@ export default function Item({ item, setToDos }) {
 
                 <div className="item-buttons">
                     <Pencil edit={setBeingEdited} />
-                    <Delete item={item} setToDos={setToDos} />
+                    <Delete item={item} setToDos={setToDos} user={user} />
                 </div>
                 </>
         }

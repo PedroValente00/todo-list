@@ -2,7 +2,7 @@ import { useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
-export default function Edit({ item, setToDos }) {
+export default function Delete({ item, setToDos, user}) {
 
     const [hovering, setHovering] = useState(false)
 
@@ -12,7 +12,14 @@ export default function Edit({ item, setToDos }) {
             const update = items.filter(i => i.id !== item.id)
             return [...update]
         })
-        
+        const payload = JSON.stringify(item)
+        if(user){
+                fetch("/api/toDos", {
+                method:"DELETE",
+                headers: {"Content-Type": "application/json"},
+                body:payload
+            })
+        } 
     }
 
     return <div onMouseEnter={() => setHovering(true)}

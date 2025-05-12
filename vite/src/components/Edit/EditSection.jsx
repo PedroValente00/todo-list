@@ -2,7 +2,7 @@ import { useState } from "react"
 import EditSave from "./EditSave"
 import EditCancel from "./EditCancel"
 
-export default function EditSection({ item, setBeingEdited, setToDos }) {
+export default function EditSection({ item, setBeingEdited, setToDos, user }) {
 
     const [toDo, setToDo] = useState(item.toDo)
 
@@ -16,7 +16,7 @@ export default function EditSection({ item, setBeingEdited, setToDos }) {
 
         <EditCancel cancelEdit={setBeingEdited} />
         <EditSave item={item} setToDos={setToDos}
-        cancelEdit={setBeingEdited}
+        cancelEdit={setBeingEdited} user={user}
             setBeingEdited={setBeingEdited} toDo={toDo} />
     </div>
 }

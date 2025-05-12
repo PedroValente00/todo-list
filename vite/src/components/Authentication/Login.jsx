@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import axios from "axios"
 import { useState,useEffect } from 'react';
-import { useNavigate,Link } from "react-router";
+import { useNavigate } from "react-router";
 
 export default function Login({user, setUser}) {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -20,7 +20,7 @@ export default function Login({user, setUser}) {
         navigate("/todos");
     }
 
-useEffect(()=>{if (user) navigate("/todos")},[])
+useEffect(()=>{if (user) navigate("/todos")},[navigate, user])
 
     return (<>
         {

@@ -1,8 +1,8 @@
-import { useState,useEffect } from "react"
+import { useState } from "react"
 import axios from "axios"
 import { v4 as uuid } from 'uuid';
 
-export default function SubmitNew({toDos, setToDos, user}) {
+export default function SubmitNew({setToDos, user}) {
 
     const [newToDo, setNewToDo] = useState("")
     const handleChange = (e) => {
@@ -17,7 +17,7 @@ export default function SubmitNew({toDos, setToDos, user}) {
         const capitalizedNewToDo = `${capFirst}${capRest}`
         const submission = {id:uuid(), toDo:capitalizedNewToDo, done:false }
 
-        if (user) await axios.post('/api/toDos', submission);
+        if (user) axios.post('/api/toDos', submission);
         setToDos(toDos => [...toDos, submission])
         setNewToDo("")
     }

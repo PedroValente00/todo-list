@@ -1,10 +1,10 @@
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-export default function EditSave({ item, setToDos, setBeingEdited, toDo }) {
+export default function EditSave({ item, setToDos, setBeingEdited, toDo, user }) {
 
     const style = {
         color: "#248624",
-        ...(!toDo.length) && {filter:" sepia(1)"}
+        ...(!toDo.length) && { filter: " sepia(1)" }
     }
 
     const handleClick = () => {
@@ -19,9 +19,21 @@ export default function EditSave({ item, setToDos, setBeingEdited, toDo }) {
                 return t
             })
         });
-        setBeingEdited(toggle => !toggle)
+        setBeingEdited(toggle => !toggle);
+
+        if (user) {
+            const payload = JSON.stringify({
+                newToDo: toDo,
+                id: item._id
+            });
+            fetch("/api/toDos", {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: payload
+            })
+        }
     }
 
-    return <CheckCircleIcon className="icon" onClick={handleClick} style={style}/>
+    return <CheckCircleIcon className="icon" onClick={handleClick} style={style} />
 }
 
