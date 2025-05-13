@@ -23,8 +23,6 @@ export default function Item({ item, setToDos, user }) {
                 done: !checked,
                 id: item._id
             });
-            console.log("payload")
-            console.log(payload)
             fetch("/api/toDos", {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json" },

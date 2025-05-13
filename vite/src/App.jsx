@@ -17,9 +17,7 @@ function App() {
 
   useEffect(() => {
     async function getUser() {
-      const user = await axios.get('/api/user');
-      console.log("useeffect from App:")
-      console.log(user.data)
+      const user = await axios.get('/api/authentication/user');
       setUser(user.data)
     } getUser()
   },[])

@@ -9,14 +9,14 @@ export default function Register({user, setUser}) {
     let navigate = useNavigate();
 
     const onSubmit = async data => {
-        const registration = await axios.post('/api/register', data);
+        const registration = await axios.post('/api/authentication/register', data);
         const response = registration.data;
         if (response.error) return setErrorMsg(response.msg)
         setUser(response.user) 
         navigate("/todos");
     }
 
-useEffect(()=>{if (user) navigate("/todos")},[])
+useEffect(()=>{if (user) navigate("/todos")},[navigate, user])
 
     return (<>
         {

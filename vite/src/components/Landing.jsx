@@ -8,7 +8,7 @@ export default function Landing({ user }) {
     let navigate = useNavigate();
     useEffect(() => {
         if (user) navigate("/todos")
-    }, [user])
+    }, [navigate, user])
 
     const avatar = { fontSize: "5em" }
 
@@ -29,7 +29,7 @@ export default function Landing({ user }) {
                 <div className="landing-description">
                     <ul>
                         <li>Your data is saved in your account.</li>
-                        <li>You can only access it when you're logged in.</li>
+                        <li>You can only access it when you are logged in.</li>
                     </ul>
                 </div>
             </section>
@@ -46,9 +46,9 @@ export default function Landing({ user }) {
 
                     <div className="landing-description">
                         <ul>
-                            <li>You don't need to create an account.</li>
+                            <li>You do not need to create an account.</li>
                             <li>Your data is saved locally in your browser.</li>
-                            <li>Your data isn't saved if using Incognito mode.</li>
+                            <li>Your data is not saved if using Incognito mode.</li>
                         </ul>
                     </div>
                 </section>

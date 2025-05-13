@@ -27,7 +27,7 @@ export default function SubmitNew({setToDos, user}) {
 
         <input type="text" name="newToDo" id="newTodo"
             value={newToDo} onChange={handleChange}
-            maxLength={80} placeholder="Take out the trash and pay the bills" />
+            maxLength={80} placeholder="Take out the trash." />
         
         <button className="submitBtn" type="submit">Submit</button>
     </form>
