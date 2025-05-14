@@ -12,17 +12,8 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import NavBar from "./components/NavBar/Navbar"
 import "./components/mobile.css"
-// import { fixVercelBS } from "../../api/utils"
 
 function App() {
-console.log("added function.")
-// fixVercelBS()
- window.addEventListener('vite:preloadError', (event) => {
-    event.preventDefault()
-    console.log("Vite preload error. Reloading page...")
-    alert("fixVercelBS function ran")
-  window.location.reload() // for example, refresh the page
- })
 
   const [user, setUser] = useState()
 

@@ -1,4 +1,10 @@
 {
+    "headers": [
+    {
+    "source": "/api",
+    "headers": [{ "key": "Content-Type", "value": "application/javascript" }]
+    }
+  ],
 "version": 2, "rewrites": [{ "source": "/(.*)", "destination": "/api" }],
 "cleanUrls": true
 }
