@@ -1,0 +1,15 @@
+/* stylesheet for mobile devices */
+
+@media (max-width: 1250px) {
+  .list{
+    width: auto;
+    margin: 1em;
+  }
+  .landing-description{
+    font-size: 0.9em;
+    padding: 0 1em;
+  }
+  .item{
+    font-size: 0.9em;
+  }
+}

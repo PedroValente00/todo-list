@@ -12,6 +12,8 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import NavBar from "./components/NavBar/Navbar"
 import { fixVercelBS } from "../../api/utils"
+import "./components/mobile.css"
+
 function App() {
 console.log("added function")
 fixVercelBS()

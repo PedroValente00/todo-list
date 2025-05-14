@@ -13,12 +13,10 @@
 }
 
 .item:nth-child(odd) {
-    /* background-color: #98D2C0; */
     background-color: transparent;
 }
 
 .item:nth-child(even) {
-    /* background-color: #4F959D; */
     background-color: transparent;
 }
 
