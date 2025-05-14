@@ -3,11 +3,11 @@ const app = express();
 const bcrypt = require("bcrypt")
 const { User, ToDo } = require("../../database")
 const Joi = require('joi');
-const {catchAsync} = require("../../utils")
+const { catchAsync } = require("../../utils")
 
 // api/authentication
 
-app.post("/register", async (req, res) => {
+app.post("/register", catchAsync(async (req, res) => {
     const schema = Joi.object({
         name: Joi.string().alphanum().min(3).max(20).required(),
         email: Joi.string().email({ minDomainSegments: 2, tlds: false })
@@ -41,8 +41,9 @@ app.post("/register", async (req, res) => {
         response.user = user
         res.send(response)
     }
-})
-app.post("/login", async (req, res) => {
+}))
+
+app.post("/login", catchAsync(async (req, res) => {
     const schema = Joi.object({
         email: Joi.string().email({ minDomainSegments: 2, tlds: false })
             .min(5).max(80).required(),
@@ -77,11 +78,11 @@ app.post("/login", async (req, res) => {
         toDos: userInfo.toDos
     }
     res.send(response)
-})
+}))
 
 app.get("/user", catchAsync(async (req, res) => {
     const user = await User.findById(req.session.user_id)
-    .populate("toDos")
+        .populate("toDos")
     if (user) return res.send({
         _id: user._id,
         name: user.name,

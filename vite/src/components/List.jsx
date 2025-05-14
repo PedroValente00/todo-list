@@ -10,7 +10,6 @@ export default function List({ user }) {
   const [loader, setLoader] = useState(true)
   
   useEffect(() => {
-    console.log("User useEffect")
     if (user) {
       setToDos(user.toDos)
       return setLoader(false)

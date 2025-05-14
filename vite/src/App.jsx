@@ -20,18 +20,18 @@ function App() {
       const user = await axios.get('/api/authentication/user');
       setUser(user.data)
     } getUser()
-  },[])
+  }, [])
 
   return (<>
     <BrowserRouter>
 
-    <NavBar user={user} setUser={setUser} />
+      <NavBar user={user} setUser={setUser} />
 
       <Routes>
 
         <Route index element={<Landing user={user} />} />
 
-        <Route path="/todos" element={<List user={user} setUser={setUser}/>} />
+        <Route path="/todos" element={<List user={user} setUser={setUser} />} />
 
         <Route path="/register" element={<Register user={user} setUser={setUser} />} />
 
@@ -42,7 +42,7 @@ function App() {
       </Routes>
     </BrowserRouter>
 
-    </>)
+  </>)
 }
 
 export default App

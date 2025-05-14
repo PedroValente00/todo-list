@@ -17,11 +17,6 @@ app.use(session({
     resave: false, saveUninitialized: true,
 }))
 app.use(express.static(path.join(__dirname, '/dist')));
-// app.use((req, res, next) => {
-//     console.log("from middleware:")
-//     console.log(req.session)
-//     next()
-// })
 
 app.use("/api/toDos", require("./routes/toDos"))
 app.use("/api/authentication", require("./routes/authentication"))
