@@ -20,6 +20,9 @@ export function catchAllErrors(err, req, res, next) {
 //from https://vite.dev/guide/build ("Load Error Handling" section)
 export function fixVercelBS() {
   window.addEventListener('vite:preloadError', (event) => {
+    event.preventDefault()
+    console.log("Vite preload error. Reloading page...")
+    alert("fixVercelBS function ran")
   window.location.reload() // for example, refresh the page
 })
 }
