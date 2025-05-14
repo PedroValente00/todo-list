@@ -13,6 +13,7 @@ import axios from "axios"
 import NavBar from "./components/NavBar/Navbar"
 import { fixVercelBS } from "../../api/utils"
 function App() {
+console.log("added function")
 fixVercelBS()
 
   const [user, setUser] = useState()

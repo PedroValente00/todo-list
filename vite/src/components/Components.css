@@ -89,13 +89,11 @@
     flex-wrap: wrap;
     column-gap: 2em;
     row-gap: 2em;
-    margin:2em
-    /* max-width: 80vw;
-    margin: auto; */
+    margin:1em
 }
 
 .landing-option{
-    padding: 1em;
+    padding: 1em 0em;
     box-shadow: 1px 1px 5px 2px #8c8c8c;
     flex: 1;
     max-width: 600px;
@@ -112,6 +110,9 @@
     color: #9d9c9c;
 }
 
+.landing-description ul li:nth-child(odd) {
+    color: #818080;
+}
 .landing-btn-div{
     display: flex;
     flex-direction: column;
