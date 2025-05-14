@@ -3,6 +3,7 @@ const app = express();
 const bcrypt = require("bcrypt")
 const { User, ToDo } = require("../../database")
 const Joi = require('joi');
+const {catchAsync} = require("../../utils")
 
 // api/authentication
 
@@ -78,7 +79,8 @@ app.post("/login", async (req, res) => {
     res.send(response)
 })
 
-app.get("/user", async (req, res) => {
+// app.get("/user", async (req, res) => {
+app.get("/user", catchAsync(async (req, res) => {
     const user = await User.findById(req.session.user_id)
     .populate("toDos")
     if (user) return res.send({
@@ -87,7 +89,10 @@ app.get("/user", async (req, res) => {
         email: user.email,
         toDos: user.toDos
     })
-})
+    // throw new Error("User not found")
+    res.end()
+// })
+}))
 
 app.post('/logout', function (req, res) {
     req.session.destroy()
