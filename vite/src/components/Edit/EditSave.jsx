@@ -26,11 +26,16 @@ export default function EditSave({ item, setToDos, setBeingEdited, toDo, user })
                 newToDo: toDo,
                 id: item._id
             });
-            fetch("/api/toDos", {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: payload
-            })
+            try{
+
+                return fetch("/api/toDos", {
+                    method: "PATCH",
+                    headers: { "Content-Type": "application/json" },
+                    body: payload
+                })
+            }catch(e){
+                console.log("PATCH request error:", e)
+            }
         }
     }
 

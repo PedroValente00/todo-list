@@ -32,12 +32,17 @@ router.route("/")
 .patch(async (req,res) => {
     if(req.body.newToDo){
         const {id,newToDo} = req.body;
-        return await ToDo.findByIdAndUpdate(id,{toDo:newToDo},{runValidators:true})
+        // return await ToDo.findByIdAndUpdate(id,{toDo:newToDo},{runValidators:true})
+        const update = await ToDo.findByIdAndUpdate(id,{toDo:newToDo},{runValidators:true})
+        console.log(update)
+        
     }else{
         const {id,done} = req.body;
-        return await ToDo.findByIdAndUpdate(id,{done},{runValidators:true})
+        // return await ToDo.findByIdAndUpdate(id,{done},{runValidators:true})
+        const update = await ToDo.findByIdAndUpdate(id,{done},{runValidators:true})
+        console.log(update)
     }
-        res.end()
+        return res.end()
 })
 
 module.exports = router
