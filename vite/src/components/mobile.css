@@ -3,7 +3,7 @@
 @media (max-width: 1250px) {
   .list{
     width: auto;
-    margin: 1em;
+    margin: auto;
   }
   .landing-description{
     font-size: 0.9em;

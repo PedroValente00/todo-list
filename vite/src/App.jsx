@@ -15,7 +15,7 @@ import "./components/mobile.css"
 // import { fixVercelBS } from "../../api/utils"
 
 function App() {
-console.log("added function")
+console.log("added function.")
 // fixVercelBS()
  window.addEventListener('vite:preloadError', (event) => {
     event.preventDefault()
@@ -23,7 +23,7 @@ console.log("added function")
     alert("fixVercelBS function ran")
   window.location.reload() // for example, refresh the page
  })
- 
+
   const [user, setUser] = useState()
 
   useEffect(() => {
