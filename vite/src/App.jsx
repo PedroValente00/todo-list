@@ -11,7 +11,9 @@ import "./components/Navbar/Navbar.css"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import NavBar from "./components/NavBar/Navbar"
+import { fixVercelBS } from "../../api/utils"
 function App() {
+fixVercelBS()
 
   const [user, setUser] = useState()
 
